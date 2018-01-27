@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,13 @@ class Product
      * @ORM\Column(type="text", name="description"))
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string"))
+     */
+    private $brands;
 
     /**
      * @var string
@@ -74,7 +83,7 @@ class Product
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return (string)$this->description;
     }
 
     /**
@@ -90,10 +99,41 @@ class Product
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDate()
     {
-        return $this->date->format('Y-m-d H:i:s');
+        return $this->date;
+    }
+
+    /**
+     * @var DateTime $date
+     *
+     * @return Product
+     */
+    public function setDate(DateTime $date): Product
+    {
+        $this->$date = $date->format('Y-m-d');
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrands(): string
+    {
+        return (string)$this->brands;
+    }
+
+    /**
+     * @param string $brands
+     *
+     * @return Product
+     */
+    public function setBrands(string $brands): Product
+    {
+        $this->brands = $brands;
+        return $this;
     }
 }
