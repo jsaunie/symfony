@@ -62,15 +62,15 @@ class User implements AdvancedUserInterface, \Serializable
     private $active;
 
 
-    const ROLE_DEFAULT     = 'ROLE_USER';
-    const ROLE_ADMIN       = 'ROLE_ADMIN';
+    const ROLE_DEFAULT = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
 
     public function __construct()
     {
         $this->active = true;
-        $this->roles  = [];
+        $this->roles = [];
     }
 
     /**
@@ -166,10 +166,10 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function getRoles(): array
     {
-        $roles   = $this->roles;
+        $roles[] = $this->roles;
         $roles[] = static::ROLE_DEFAULT;
 
-        return array_unique($this->roles);
+        return array_unique(array($this->roles));
     }
 
     /**

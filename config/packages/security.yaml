@@ -4,12 +4,21 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     encoders:
         App\Entity\User:
-            algorithm: brcypt
+            algorithm: bcrypt
     providers:
         app_provider:
             entity:
                 class: App\Entity\User
                 property: username
+        in_memory:
+            memory:
+                users:
+                    ryan:
+                        password: ryanpass
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: kitten
+                        roles: 'ROLE_ADMIN'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

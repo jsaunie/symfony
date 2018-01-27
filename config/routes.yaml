@@ -1,2 +1,5 @@
 logout:
     path: /logout
+product.show:
+    path: /product/{id}
+    controller: App\Controller\DefaultController::showProduct

@@ -18,10 +18,21 @@ class DefaultController extends Controller
     {
         $manager = $this->getDoctrine()->getManager();
         /** @var ProductRepository $repo */
-        $repo = $manager->getRepository(Product::class);
+        $products = $manager->getRepository(Product::class)->findAll();
+        $msg = 'He\'s awesome anyway 😎';
 
-        return $this->render('homepage.html.twig', [
-            'thibaud' => 'He\'s awesome anyway 😎',
-        ]);
+        return $this->render('homepage.html.twig', compact('products', 'msg'));
     }
+
+    /*
+     * @ROUTE (path="/product/{id}", requirements={"id" = "\d+"})
+     */
+    public function showProduct($id)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        /** @var ProductRepository $repo */
+        $product = $manager->getRepository(Product::class)->find($id);
+        return $this->render('show.html.twig', compact('product'));
+    }
+
 }
